@@ -3,12 +3,15 @@ package com.taskboard.controller;
 import com.taskboard.model.TaskColumn;
 import com.taskboard.service.TaskColumnService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/columns")
+@RequestMapping("/api/boards/columns")
 @CrossOrigin(origins = "*")
 public class TaskColumnController {
 
@@ -20,9 +23,10 @@ public class TaskColumnController {
         return taskColumnService.getAllColumns();
     }
 
-    @PostMapping
-    public TaskColumn createColumn(@RequestBody TaskColumn taskColumn){
-        return taskColumnService.createColums(taskColumn);
+    @PostMapping("/{boardId}")
+    public ResponseEntity<TaskColumn> createColumn(@PathVariable Long boardId, @RequestBody TaskColumn taskColumn){
+        TaskColumn createColumn = taskColumnService.createColums(boardId, taskColumn);
+        return new ResponseEntity<>(createColumn, HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}")

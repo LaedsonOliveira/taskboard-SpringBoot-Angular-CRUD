@@ -1,5 +1,6 @@
 package com.taskboard.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -18,6 +19,7 @@ public class Card {
 
     @ManyToOne
     @JoinColumn(name = "column_id")
+    @JsonBackReference
     private TaskColumn column;
 
     //Get and Setters

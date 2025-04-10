@@ -1,6 +1,8 @@
 package com.taskboard.model;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 
@@ -18,9 +20,11 @@ public class TaskColumn {
 
     @ManyToOne
     @JoinColumn(name = "border_id")
+    @JsonBackReference
     private Board board;
 
     @OneToMany(mappedBy = "column", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<Card> card;
 
 

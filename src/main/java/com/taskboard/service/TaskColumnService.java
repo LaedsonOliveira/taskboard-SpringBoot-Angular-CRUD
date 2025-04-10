@@ -1,6 +1,8 @@
 package com.taskboard.service;
 
+import com.taskboard.model.Board;
 import com.taskboard.model.TaskColumn;
+import com.taskboard.repository.BoardRepository;
 import com.taskboard.repository.ColumnRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,11 +18,16 @@ public class TaskColumnService {
     @Autowired
     private ColumnRepository  columnRepository;
 
+    @Autowired
+    private BoardRepository boardRepository;
+
     public List<TaskColumn> getAllColumns() {
         return columnRepository.findAll();
     }
 
-    public TaskColumn createColums(TaskColumn taskColumn){
+    public TaskColumn createColums(Long boardId, TaskColumn taskColumn){
+        Board board = boardRepository.findById(boardId).orElseThrow(() -> new RuntimeException("board com ID" + boardId + "não encontrado"));
+        taskColumn.setBoard(board);
         return columnRepository.save(taskColumn);
     }
 

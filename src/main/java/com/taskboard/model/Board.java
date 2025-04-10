@@ -1,6 +1,7 @@
 package com.taskboard.model;
 
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -14,6 +15,7 @@ public class Board {
     private String name;
 
     @OneToMany(mappedBy = "board", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<TaskColumn> columns;
 
     public String getName() {

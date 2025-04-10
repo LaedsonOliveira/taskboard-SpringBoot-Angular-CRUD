@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/cards")
+@RequestMapping("/api/boards/columns/cards")
 @CrossOrigin(origins = "*")
 public class CardController {
 
@@ -26,17 +26,15 @@ public class CardController {
         return cardService.getCardById(id);
     }
 
-    @PostMapping("/column/{columnid}")
-    public Card createCard(@PathVariable Long columnid, @RequestBody Card card){
-        return cardService.createCard(columnid, card);
+    @PostMapping("/{columnId}")
+    public Card createCard(@PathVariable Long columnId, @RequestBody Card card){
+        return cardService.createCard(columnId, card);
     }
 
     @PutMapping("/{id}")
     public Card updateCard(@PathVariable Long id, @RequestBody Card card){
         return cardService.updateCard(id, card);
     }
-
-
 
     @DeleteMapping("/{id}")
     public void deleteCard(@PathVariable Long id){
