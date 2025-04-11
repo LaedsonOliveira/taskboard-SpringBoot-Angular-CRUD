@@ -1,0 +1,31 @@
+<h2>Adicionar Card à coluna {{ columnId }}</h2>
+
+<form (ngSubmit)="CreateCard()">
+    <input type="text" [(ngModel)]="newCard.title" placeholder="Titulo" require >
+    <input type="text" [(ngModel)]="newCard.description" name="description" placeholder="Descrição">
+    <button type="submit">Criar Card</button>
+</form>
+
+<h3>Criar novo Card</h3>
+<form (ngSubmit)="CreateCard()">
+    <label>Titulo</label>
+    <input type="text" [(ngModel)]="newCard.title" name="title" required>
+    <br>
+
+    <label>Derscrição</label>
+    <input type="text" [(ngModel)]="newCard.description" name="description" required>
+    <br>
+
+    <label>Está bloqueado?</label>
+    <input type="checkbox" [(ngModel)]="newCard.blocked" name="blocked">
+    <br>
+
+    <label *ngIf="newCard.blocked">Motivo do Bloqueio?</label>
+    <input ngIf="newCard.blocked" type="text" [(ngModel)]="newCard.blockReason" name="blockReason" >
+    <br>
+
+    <button type="submit"> Criar Card</button>
+</form>
+
+
+<button (click)="goToColumns()">Voltar para Colunas</button>

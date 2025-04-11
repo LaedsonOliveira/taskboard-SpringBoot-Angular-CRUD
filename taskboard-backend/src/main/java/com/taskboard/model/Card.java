@@ -16,6 +16,7 @@ public class Card {
     private LocalDateTime createAt = LocalDateTime.now();
     private boolean blocked;
     private String blockReason;
+    private Integer position;
 
     @ManyToOne
     @JoinColumn(name = "column_id")
@@ -24,6 +25,14 @@ public class Card {
 
     //Get and Setters
 
+
+    public Integer getPosition() {
+        return position;
+    }
+
+    public void setPosition(Integer position) {
+        this.position = position;
+    }
 
     public Long getId() {
         return id;

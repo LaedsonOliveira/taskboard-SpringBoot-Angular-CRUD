@@ -1,0 +1,15 @@
+<h2>Coluna do Board {{boardId}}</h2>
+
+<ul>
+    <li *ngFor="let columns of columns" (click)="goToCards(columns.id)">
+        {{ columns.name }}
+    </li>
+</ul>
+
+<h2>Adicionar Coluna ao Board</h2>
+<form (ngSubmit)="createColumn()">
+    <input type="text" [(ngModel)]="newColumn.name" name="columnName" required>
+    <button type="submit">Adicionar Coluna</button>
+</form>
+
+<button (click)="goToBoards()">Voltar para o Board</button>
